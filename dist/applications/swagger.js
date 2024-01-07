@@ -20,7 +20,7 @@ const options = {
         },
         servers: [
             {
-                url: "https://brandbiz-api-v2-production.up.railway.app",
+                url: "https://brandbiz-api-2n5hzcnb7q-uc.a.run.app",
                 description: "Development server",
             },
         ],
@@ -36,6 +36,6 @@ function swaggerDocs(app) {
         res.setHeader("Content-Type", "application/json");
         res.send(swaggerSpec);
     });
-    console.info(`Docs available at https://brandbiz-api-v2-production.up.railway.app/docs`);
+    console.info(`Docs available at https://brandbiz-api-2n5hzcnb7q-uc.a.run.app/docs`);
 }
 exports.default = swaggerDocs;
