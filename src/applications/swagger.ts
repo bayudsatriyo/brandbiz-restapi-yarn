@@ -17,7 +17,7 @@ const options: swaggerJsdoc.Options = {
     },
     servers: [
       {
-        url: "https://brandbiz-api-v2-production.up.railway.app",
+        url: "https://brandbiz-api-2n5hzcnb7q-uc.a.run.app",
         description: "Development server",
       },
     ],
@@ -38,7 +38,7 @@ function swaggerDocs(app: Express) {
   });
 
   console.info(
-    `Docs available at https://brandbiz-api-v2-production.up.railway.app/docs`
+    `Docs available at https://brandbiz-api-2n5hzcnb7q-uc.a.run.app/docs`
   );
 }
 
