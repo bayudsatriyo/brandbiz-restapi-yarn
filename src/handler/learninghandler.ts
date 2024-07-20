@@ -40,7 +40,6 @@ class LearningHandler {
     async getImage (req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const image = req.params.image
-            console.log(image)
             // const __dirname = dirname();
 
             const filePath = path.join(__dirname, '..', 'uploads', image);
