@@ -29,7 +29,7 @@ const addLearning = async (
   const Learningdata = await prismaClient.learningpath.create({
     data: {
       judul: dataLearning.judul,
-      imageUrl: `https://brandbiz-api-4elcvuw3na-uc.a.run.app/brandbiz/learning/${format}-${dataLearning.imageUrl}`,
+      imageUrl: `${process.env.BASE_URL}/brandbiz/learning/${format}-${dataLearning.imageUrl}`,
     },
   });
 
