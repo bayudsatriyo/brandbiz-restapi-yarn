@@ -69,7 +69,7 @@ const getLarningPathById = async (id: number) => {
   });
 };
 
-const deleteLearningPath = async (id: number): Promise<string> => {
+const deleteLearningPath = async (id: number) => {
   const idlearning = validate(learningValidation.idLearningpath, id);
 
   const judul = await prismaClient.learningpath.delete({
@@ -78,10 +78,11 @@ const deleteLearningPath = async (id: number): Promise<string> => {
     },
     select: {
       judul: true,
+      imageUrl: true,
     },
   });
 
-  return judul.judul;
+  return judul;
 };
 
 export default {

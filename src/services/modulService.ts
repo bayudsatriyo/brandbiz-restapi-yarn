@@ -105,6 +105,7 @@ const deleteModul = async (id: number) => {
     },
     select: {
       judul: true,
+      gambar: true,
     },
   });
 };
