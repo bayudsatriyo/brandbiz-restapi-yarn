@@ -84,7 +84,7 @@ class Userhandler {
 
       if (req.file !== undefined) {
         image = req.format;
-        dataUser.profileUrl = `http://localhost:8080/brandbiz/user/image/${image}`;
+        dataUser.profileUrl = `https://brandbiz-api-4elcvuw3na-uc.a.run.app/brandbiz/user/image/${image}`;
       } else {
         for (let ext of ["jpg", "png", "jpeg"]) {
           // membuat path lengkap dari file dengan nama dan ekstensi

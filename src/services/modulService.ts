@@ -76,7 +76,7 @@ const updateModul = async (
     video: dataModul.video,
   };
   if (image !== null) {
-    queryModule.gambar = `${process.env.BASE_URL}/brandbiz/modul/${image}`;
+    queryModule.gambar = `https://brandbiz-api-4elcvuw3na-uc.a.run.app/brandbiz/modul/${image}`;
   }
   const cekModul = await prismaClient.modul.count({
     where: {
