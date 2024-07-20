@@ -59,12 +59,24 @@ const addModul = async (
 const updateModul = async (
   data: Modul,
   idmodul: number,
-  image: string | undefined
+  image: string | null
 ) => {
   const dataModul = validate(modulValidations.addModulValidation, data);
   const idModul = validate(learningValidation.idLearningpath, idmodul);
-  if (image !== undefined) {
-    dataModul.gambar = `${process.env.BASE_URL}/brandbiz/modul/${image}`;
+  const queryModule: {
+    judul: string;
+    inti_materi: string;
+    tambahan: string;
+    gambar?: string;
+    video: string | null;
+  } = {
+    judul: dataModul.judul,
+    inti_materi: dataModul.inti_materi,
+    tambahan: dataModul.tambahan,
+    video: dataModul.video,
+  };
+  if (image !== null) {
+    queryModule.gambar = `${process.env.BASE_URL}/brandbiz/modul/${image}`;
   }
   const cekModul = await prismaClient.modul.count({
     where: {
@@ -76,13 +88,11 @@ const updateModul = async (
     throw new ResponseError(404, "id tidak ditemukan");
   }
 
-  await cekJudul(dataModul.judul);
-
   return prismaClient.modul.update({
     where: {
       id: idModul,
     },
-    data: dataModul,
+    data: queryModule,
   });
 };
 
@@ -110,4 +120,22 @@ const deleteModul = async (id: number) => {
   });
 };
 
-export default { addModul, updateModul, deleteModul };
+const getModulById = async (idModul: number) => {
+  const cekModul = await prismaClient.modul.count({
+    where: {
+      id: idModul,
+    },
+  });
+
+  if (!cekModul) {
+    throw new ResponseError(404, "id tidak ditemukan");
+  }
+
+  return prismaClient.modul.findFirst({
+    where: {
+      id: idModul,
+    },
+  });
+};
+
+export default { addModul, updateModul, deleteModul, getModulById };

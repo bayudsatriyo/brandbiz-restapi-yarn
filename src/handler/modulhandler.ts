@@ -2,6 +2,7 @@ import modulService from "../services/modulService";
 import { Request, Response, NextFunction } from "express";
 import path from "path";
 import * as fs from "fs";
+import ResponseError from "../exceptions/ResponseError";
 
 class ModulHandler {
   async addModul(
@@ -52,8 +53,21 @@ class ModulHandler {
     try {
       const data = req.body;
       const idModul = parseInt(req.params.idModul);
-      const image = `${req.format}-${req.file?.originalname}`;
-
+      let image: string | null = null;
+      if (req.file) {
+        image = `${req.format}-${req.file?.originalname}`;
+      }
+      const cekModul = await modulService.getModulById(idModul);
+      if (!cekModul) {
+        throw new ResponseError(403, "modul tidak ditemukan");
+      }
+      if (cekModul.gambar && image !== null) {
+        const fileName = cekModul.gambar.substring(
+          cekModul.gambar.lastIndexOf("/") + 1
+        );
+        const filePath = path.join(__dirname, "..", "uploads", fileName);
+        fs.unlinkSync(filePath);
+      }
       const result = await modulService.updateModul(data, idModul, image);
 
       res.status(200).json({
