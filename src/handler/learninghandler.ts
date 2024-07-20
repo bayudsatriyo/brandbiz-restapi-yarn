@@ -31,7 +31,7 @@ class LearningHandler {
 
       res.status(201).json({
         status: "CREATED",
-        data: result,
+        data: { ...result, url: `${process.env.BASE_URL}${result.urlImage}` },
       });
     } catch (e) {
       if (req.file !== undefined) {

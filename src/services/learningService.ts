@@ -9,10 +9,7 @@ export interface learningpath {
   imageUrl?: string;
 }
 
-const addLearning = async (
-  data: learningpath,
-  format: string
-): Promise<Learningpath> => {
+const addLearning = async (data: learningpath, format: string) => {
   const dataLearning = validate(learningValidation.addLearningValidation, data);
 
   // const fileData = validate(learningValidation.addLearningValidation, filename)
@@ -25,7 +22,7 @@ const addLearning = async (
   if (cekJudul) {
     throw new ResponseError(400, "Judul sudah ada, silahkan ganti judul lain");
   }
-
+  const urlImage = `/brandbiz/learning/${format}-${dataLearning.imageUrl}`;
   const Learningdata = await prismaClient.learningpath.create({
     data: {
       judul: dataLearning.judul,
@@ -33,7 +30,7 @@ const addLearning = async (
     },
   });
 
-  return Learningdata as Learningpath;
+  return { ...Learningdata, urlImage };
 };
 
 const getAllLearningpath = async (): Promise<Learningpath[]> => {
