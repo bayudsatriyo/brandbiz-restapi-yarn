@@ -1,7 +1,6 @@
-import { app } from './applications/app'
-import { logger } from './applications/logging'
+import { app } from "./applications/app";
+import { logger } from "./applications/logging";
 
-app.listen(8080, () => {
-  logger.info('App listen in port 8080')
-  
-})
+app.listen(8000, () => {
+  logger.info("App listen in port 8000");
+});
