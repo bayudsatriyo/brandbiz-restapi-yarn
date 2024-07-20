@@ -4,8 +4,8 @@ WORKDIR /usr/scr/brandbizapi
 
 COPY . .
 
-RUN yarn install
+RUN npm install
 
 EXPOSE 8080
 
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
